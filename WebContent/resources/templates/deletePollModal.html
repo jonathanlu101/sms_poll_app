@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Delete Poll?</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <p>Are you sure you want to delete the poll <b>{{$ctrl.pollName}}</b></p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="$ctrl.delete()">Delete</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="alert alert-danger" ng-show="errorMessage">{{errorMessage}}</div>
+        <div class="alert alert-info" ng-show="infoMessage">{{infoMessage}}</div>
+        <form class="col-sm-4 col-sm-push-4" action="/auth/login" method="POST">
+            <h2 class="text-center" ng-hide="loggedIn">Login Here</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <input  name="username" class="form-control" type="text" required="required" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                    <input name="password" class="form-control" type="password" required="required" placeholder="Password">
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+</div>

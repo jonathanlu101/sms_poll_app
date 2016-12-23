@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    <context:property-placeholder location="/WEB-INF/config.properties"/>
+
+	<!-- MySQL data source -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${org.jlu.telstraapp.database.url}" />
+		<property name="username" value="${org.jlu.telstraapp.database.username}" />
+		<property name="password" value="${org.jlu.telstraapp.database.password}" />
+		
+	</bean>
+	
+	<bean id="smsApiClient" class="org.jlu.telstraapp.sms.api.SMSApiClient">
+		<property name="objectMapper" ref="objectMapper" />
+		<property name="SEND_SMS_URL" value="${org.jlu.telstraapp.smsapiclient.SEND_SMS_URL}" />
+		<property name="SMS_STATUS_URL" value="${org.jlu.telstraapp.smsapiclient.SMS_STATUS_URL}" />
+		<property name="SMS_RESPONSE_URL" value="${org.jlu.telstraapp.smsapiclient.SMS_RESPONSE_URL}" />
+	</bean>
+	
+</beans>

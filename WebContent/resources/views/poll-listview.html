@@ -1,0 +1,20 @@
+<div class="content">
+  <div class="container">
+    <h1>Polls</h1>
+    <a href="new-poll" class="btn btn-primary">Create Poll</a>
+    <hr />
+    <div class="list-group" ng-repeat="poll in polls">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h4 class="list-group-item-heading"><a href="poll/{{poll.pollId}}">{{poll.name}}</a></h4>
+                    <p class="list-group-item-text">{{ (poll.messages|repliedMessagesFilter).length }}/{{poll.messages.length}} have responded</p>
+                </div>
+                <a class="btn btn-primary col-sm-1" href="poll/{{poll.pollId}}">VIEW</a>
+            </div>
+            <hr/>
+            <p class="list-group-item-text">{{poll.description}}</p>
+        </div>
+    </div>
+  </div>
+</div>

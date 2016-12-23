@@ -1,0 +1,7 @@
+#Eclipse
+.project
+.classpath
+.settings/*
+target/*
+
+WebContent/WEB-INF/config.properties

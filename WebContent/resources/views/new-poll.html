@@ -1,0 +1,87 @@
+<div class="content">
+    <div class="container">
+        <h1>New Poll</h1>
+        <div class="alert alert-success" ng-show="successMessage">
+            {{successMessage.message}}
+            <a class="pull-right" ng-show="successMessage.redirectLink" href="{{successMessage.redirectLink}}">{{successMessage.redirectText}}</a>
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage">
+            {{errorMessage.message}}
+            <a class="pull-right" ng-show="errorMessage.redirectLink" href="{{errorMessage.redirectLink}}">{{errorMessage.redirectText}}</a>
+        </div>
+        <div class="col-md-10" ng-hide="hideNewPollForm">
+            <form ng-submit="sendPoll(newPoll)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" ng-model="newPoll.name" maxlength="40" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" class="form-control" maxlength="255" rows="5" ng-model="newPoll.description" required/>
+                </div>
+                <h6>Question Text:</h6>
+                <textarea id="question" rows="7" class="form-control" maxlength="159" ng-model="newPoll.question" required/>
+                <h6>Options:</h6>
+                <button class="btn btn-primary" type="button" ng-click="addOption()">Add Option</button>
+                <p><small>
+                    *Alternate values are to be seperated with comma. Eg. "water,h2o,liquid"<br/>
+                    **Options & Alternate values are <b>not</b> case sensitive
+                </small></p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">#</th>
+                            <th class="col-md-3 col-md-push-1">Value</th>
+                            <th class="col-md-4 col-md-push-1">Alternate Values</th>
+                            <th class="col-md-1 col-md-push-1" id="removeColumn"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="option in newPoll.options">
+                            <td>{{$index + 1}}</td>
+                            <td><input type="text" class="form-control" ng-model="option.value" maxlength="20" required></td>
+                            <td><input type="text" class="form-control" ng-model="option.alternateValuesString" maxlength="50" pattern="^(\w)+(,\w+)*$"></td>
+                            <td><button class="btn btn-danger" ng-click="removeOption(option)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Available ContactLists</h6>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <select id="available-contact-list" class="form-control" ng-model="contactListToSelect" ng-options="contactList as contactList.name disable when (contactList.contacts.length == 0) for contactList in contactLists">
+                                    <option value="">Select a ContactList</option>
+                                </select>
+                                <button type="button" class="btn btn-primary" ng-disabled="!contactListToSelect" ng-click="addToSelectedContactLists()">
+                                    Select
+                                    <span class="glyphicon glyphicon-arrow-right"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div ng-show="contactListToSelect">
+                            <p>
+                                <strong>Description:</strong>
+                                <small>{{contactListToSelect.description}}</small>
+                            </p>
+                            <p><strong>{{contactListToSelect.contacts.length}} Contacts</strong> are in this list</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Selected ContactLists</h6>
+                        <p ng-show="newPoll.contactLists.length == 0" ng-style="contactListErrorMessageStyle">No ContactLists Selected.</p>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="selectedContactList in newPoll.contactLists">
+                                {{selectedContactList.name}}
+                                <button type="button" class="btn btn-danger pull-right" ng-click="removeFromSelectedContactLists(selectedContactList)"><span class="glyphicon glyphicon-remove"></span></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr/>
+                <input class="btn btn-primary" type="submit" value="Send" />
+                <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
+            </form>
+        </div>
+    </div>
+</div>

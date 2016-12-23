@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <a class="navbar-brand" href="home">Polled</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="home">Home<span class="navbar-unread"></span></a></li>
+      <li><a href="contactlist" ng-show="loggedIn">ContactLists</a></li>
+      <li><a href="new-poll" ng-show="loggedIn">New Poll</a></li>
+      <li><a href="poll" ng-show="loggedIn">View Polls</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li  ng-hide="loggedIn"><a href="login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <li  ng-show="loggedIn"><a href="login?logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+    </ul>
+  </div>
+</nav>

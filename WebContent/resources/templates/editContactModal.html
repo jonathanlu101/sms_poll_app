@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Contact</h3>
+</div>
+<form ng-submit="$editContact.update($editContact.editedContact)">
+    <div class="modal-body" id="modal-body">
+        <div class="alert alert-danger" ng-show="$editContact.errorMessage">{{$editContact.errorMessage}}</div>
+        <div class="form-group">
+            <label for="first-name">First Name:</label>
+            <input type="text" class="form-control" id="first-name" ng-model="$editContact.editedContact.firstName" required/>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" ng-model="$editContact.editedContact.lastName" required/>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="text" class="form-control" id="mobile" ng-model="$editContact.editedContact.mobile" maxlength=10 required/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning pull-left" type="button" ng-click="$editContact.reset()">Reset</button>
+        <input type="submit" class="btn btn-primary" value="Update"/>
+        <button class="btn btn-danger" type="button" ng-click="$editContact.cancel()">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">New Contact</h3>
+</div>
+<form ng-submit="$createContact.create(newContact)">
+    <div class="modal-body" id="modal-body">
+        <div class="alert alert-danger" ng-show="$createContact.errorMessage">{{$createContact.errorMessage}}</div>
+        <div class="form-group">
+            <label for="first-name">First Name:</label>
+            <input type="text" class="form-control" id="first-name" ng-model="newContact.firstName" required/>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" ng-model="newContact.lastName" required/>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="text" class="form-control" id="mobile" ng-model="newContact.mobile" maxlength=10 required/>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Create"/>
+        <button class="btn btn-danger" type="button" ng-click="$createContact.cancel()">Cancel</button>
+    </div>
+</form>

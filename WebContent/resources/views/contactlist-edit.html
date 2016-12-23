@@ -1,0 +1,47 @@
+<div class="content">
+    <div class="container">
+        <div class="alert alert-success" ng-show="successMessage">
+            {{successMessage.message}}
+            <a class="pull-right" ng-show="successMessage.redirectLink" href="{{successMessage.redirectLink}}">{{successMessage.redirectText}}</a>
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage">
+            {{errorMessage.message}}
+            <a class="pull-right" ng-show="errorMessage.redirectLink" href="{{errorMessage.redirectLink}}">{{errorMessage.redirectText}}</a>
+        </div>
+        <div ng-show="contactList">
+            <h1>
+                {{contactList.name}}
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-click="openEditContactListModal(contactList)">EDIT</button>
+                    <button class="btn btn-danger" ng-click="openDeleteContactListModal(contactList)">DELETE</button>
+                </div>
+            </h1>
+            <p><strong>Description:</strong></p>
+            <p>{{contactList.description}}</p>
+            <h3>Contacts:</h3>
+            <p><strong>{{contactList.contacts.length}} Contacts</strong> are in this list</p>
+            <button class="btn btn-info pull-left" ng-click="openCreateContactModal()">New Contact</button>
+            <button class="btn btn-primary pull-right" ng-click="saveAllChanges()">Save All Changes</button>
+            <table class="table">
+                <thead>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Mobile</th>
+                    <th>Options</th>
+                </thead>
+                <tbody ng-repeat="contact in contactList.contacts">
+                    <tr>
+                        <td>{{contact.firstName}}</td>
+                        <td>{{contact.lastName}}</td>
+                        <td>{{contact.mobile}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-md" ng-click="openEditContactModal(contact)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button class="btn btn-danger btn-md" ng-click="deleteContact(contact)"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary pull-right" ng-click="saveAllChanges()">Save All Changes</button>
+        </div>
+    </div>
+</div>

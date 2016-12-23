@@ -1,0 +1,140 @@
+<div class="content">
+    <div class="container">
+        <div class="alert alert-success" ng-show="successMessage">
+            {{successMessage.message}}
+            <a class="pull-right" ng-show="successMessage.redirectLink" href="{{successMessage.redirectLink}}">{{successMessage.redirectText}}</a>
+        </div>
+        <div class="alert alert-danger" ng-show="errorMessage">
+            {{errorMessage.message}}
+            <a class="pull-right" ng-show="errorMessage.redirectLink" href="{{errorMessage.redirectLink}}">{{errorMessage.redirectText}}</a>
+        </div>
+        <div ng-show="poll">
+            <h1>
+                {{poll.name}}
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-click="updateResponses(poll)">UPDATE</button>
+                    <button class="btn btn-danger" ng-click="openDeletePollModal(poll)">DELETE</button>
+                </div>
+            </h1>
+            <em>Sent at : {{poll.messages[0].sentTimestamp | timestampFilter}}</em>
+            <h6>Description:</h6>
+            <p>{{poll.description}}</p>
+            <h6>Question:</h6>
+            <p>{{poll.question}}</p>
+            <hr/>
+            <div id="stats">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6>{{poll.stats.repliedMessages}}/{{poll.messages.length}} have responded
+                            ({{poll.stats.repliedMessages / poll.messages.length * 100 | number:1}}%)</h6>
+                        <p class="text-danger" ng-show="result.invalidOption > 0">*{{result.invalidOption}} replies can not be classified.</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Option</th>
+                                    <th>Alt-Values</th>
+                                    <th>#</th>
+                                    <th>%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="option in poll.options">
+                                    <td>{{option.value}}</td>
+                                    <td>
+                                        <p ng-show="option.alternateValues.length == 0">None</p>
+                                        <ul ng-show="option.alternateValues.length > 0">
+                                            <li ng-repeat="alternateValue in option.alternateValues">{{alternateValue}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>{{result.validOptions[option.value] || 0}}</td>
+                                    <td>{{(result.validOptions[option.value] || 0) / poll.stats.repliedMessages * 100 | number:1}}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-push-1 col-sm-5">
+                        <label for="graph-type"><strong>Graph Type:</strong></label>
+                        <select class="form-control" id="graph-type" ng-init="graphType = 'pie' " ng-model="graphType" ng-change="graphTypeChange()">
+                            <option value="pie" ng-selected="true">Pie Graph</option>
+                            <option value="bar">Bar Graph</option>
+                            <option value="doughnut">Doughnut Graph</option>
+                        </select>
+                        <canvas class="chart-base" chart-type="graphType" chart-data="chartData" chart-labels="chartLabels" chart-options="chartOptions"></canvas>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div id="messages">
+                <div class="row">
+                    <h3 class="col-sm-8">Messages</h3>
+                    <form class="col-sm-4 vertical-align-with-heading">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                                <input type="text" class="form-control"ng-model="searchTerm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="#" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
+                                    FirstName
+                                    <span ng-show="sortType == 'firstName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'firstName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
+                                    LastName
+                                    <span ng-show="sortType == 'lastName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'lastName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortType = 'mobileNumber'; sortReverse = !sortReverse">
+                                    Mobile
+                                    <span ng-show="sortType == 'mobileNumber' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'mobileNumber' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortType = 'chosenOption.value'; sortReverse = !sortReverse">
+                                    Option
+                                    <span ng-show="sortType == 'chosenOption.value' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'chosenOption.value' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortType = 'smsResponses[0].content'; sortReverse = !sortReverse">
+                                    Last Reply
+                                    <span ng-show="sortType == 'smsResponses[0].content' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'smsResponses[0].content' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortType = 'smsResponses[0].acknowledgedTimestamp'; sortReverse = !sortReverse">
+                                    Received
+                                    <span ng-show="sortType == 'smsResponses[0].acknowledgedTimestamp' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                    <span ng-show="sortType == 'smsResponses[0].acknowledgedTimestamp' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="message in poll.messages | orderBy:sortType:sortReverse | filter:searchTerm">
+                            <td>{{message.firstName}}</td>
+                            <td>{{message.lastName}}</td>
+                            <td>{{message.mobileNumber}}</td>
+                            <td>{{message.chosenOption.value || ""}}</td>
+                            <td>{{message.smsResponses[0].content || ""}}</td>
+                            <td>{{message.smsResponses[0].acknowledgedTimestamp | timestampFilter}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
