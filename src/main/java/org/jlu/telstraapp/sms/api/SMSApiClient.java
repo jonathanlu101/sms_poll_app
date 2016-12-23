@@ -21,9 +21,9 @@ public class SMSApiClient {
 	
 	private ObjectMapper objectMapper;
 	private HttpClient httpClient = HttpClientBuilder.create().build();
-	private String SEND_SMS_URL;
-	private String SMS_STATUS_URL;
-	private String SMS_RESPONSE_URL;
+	private static final String SEND_SMS_URL = "https://api.telstra.com/v1/sms/messages";
+	private static final String SMS_STATUS_URL = "https://api.telstra.com/v1/sms/messages/*";
+	private static final String SMS_RESPONSE_URL = "https://api.telstra.com/v1/sms/messages/*/response";
 	
 	public SMSApiClient(){
 		
@@ -96,27 +96,4 @@ public class SMSApiClient {
 		this.objectMapper = objectMapper;
 	}
 	
-	public String getSEND_SMS_URL() {
-		return SEND_SMS_URL;
-	}
-
-	public void setSEND_SMS_URL(String sEND_SMS_URL) {
-		SEND_SMS_URL = sEND_SMS_URL;
-	}
-
-	public String getSMS_STATUS_URL() {
-		return SMS_STATUS_URL;
-	}
-
-	public void setSMS_STATUS_URL(String sMS_STATUS_URL) {
-		SMS_STATUS_URL = sMS_STATUS_URL;
-	}
-
-	public String getSMS_RESPONSE_URL() {
-		return SMS_RESPONSE_URL;
-	}
-
-	public void setSMS_RESPONSE_URL(String sMS_RESPONSE_URL) {
-		SMS_RESPONSE_URL = sMS_RESPONSE_URL;
-	}
 }
