@@ -17,11 +17,11 @@
     <script src="resources\app\lib\angular\angular.js"></script>
     <script src="resources\app\lib\angular\angular-route.js"></script>
     <script src="resources\app\lib\angular\angular-animate.js"></script>
-    <!-- UI - Bootstrap -->
+    <!-- Other JS Files -->
     <script src="resources\app\lib\ui-bootstrap\ui-bootstrap-tpls-2.3.0.js"></script>
-    <!-- Chart -->
     <script src="resources\app\lib\chart\Chart.js"></script>
     <script src="resources\app\lib\chart\angular-chart.js"></script>
+    <script src="resources\app\lib\smart-table\smart-table.js"></script>
     <!-- App JS -->
     <script src="resources\app\app-main.js"></script>
     <script src="resources\app\service\contact-list-service.js"></script>

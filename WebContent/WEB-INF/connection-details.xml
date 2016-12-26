@@ -22,9 +22,6 @@
 	
 	<bean id="smsApiClient" class="org.jlu.telstraapp.sms.api.SMSApiClient">
 		<property name="objectMapper" ref="objectMapper" />
-		<property name="SEND_SMS_URL" value="${org.jlu.telstraapp.smsapiclient.SEND_SMS_URL}" />
-		<property name="SMS_STATUS_URL" value="${org.jlu.telstraapp.smsapiclient.SMS_STATUS_URL}" />
-		<property name="SMS_RESPONSE_URL" value="${org.jlu.telstraapp.smsapiclient.SMS_RESPONSE_URL}" />
 	</bean>
 	
 </beans>

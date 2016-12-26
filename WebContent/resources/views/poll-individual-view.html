@@ -65,75 +65,41 @@
             </div>
             <hr/>
             <div id="messages">
-                <div class="row">
-                    <h3 class="col-sm-8">Messages</h3>
-                    <form class="col-sm-4 vertical-align-with-heading">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-                                <input type="text" class="form-control"ng-model="searchTerm">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <table class="table">
-                    <thead>
+                <h3>Messages</h3>
+                <table st-table="tableData" class="table table-striped">
+            		<thead>
+                		<tr>
+                			<th st-sort="firstName">First Name</th>
+                			<th st-sort="lastName">Last Name</th>
+                            <th st-sort="mobileNumber">Mobile</th>
+                            <th st-sort="chosenOption">Option</th>
+                            <th st-sort="lastMessage">Last Reply</th>
+                            <th st-sort="lastMessageTime">Received</th>
+                		</tr>
                         <tr>
-                            <th>
-                                <a href="#" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
-                                    FirstName
-                                    <span ng-show="sortType == 'firstName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'firstName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="#" ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
-                                    LastName
-                                    <span ng-show="sortType == 'lastName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'lastName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="#" ng-click="sortType = 'mobileNumber'; sortReverse = !sortReverse">
-                                    Mobile
-                                    <span ng-show="sortType == 'mobileNumber' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'mobileNumber' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="#" ng-click="sortType = 'chosenOption.value'; sortReverse = !sortReverse">
-                                    Option
-                                    <span ng-show="sortType == 'chosenOption.value' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'chosenOption.value' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="#" ng-click="sortType = 'smsResponses[0].content'; sortReverse = !sortReverse">
-                                    Last Reply
-                                    <span ng-show="sortType == 'smsResponses[0].content' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'smsResponses[0].content' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="#" ng-click="sortType = 'smsResponses[0].acknowledgedTimestamp'; sortReverse = !sortReverse">
-                                    Received
-                                    <span ng-show="sortType == 'smsResponses[0].acknowledgedTimestamp' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                                    <span ng-show="sortType == 'smsResponses[0].acknowledgedTimestamp' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="message in poll.messages | orderBy:sortType:sortReverse | filter:searchTerm">
-                            <td>{{message.firstName}}</td>
-                            <td>{{message.lastName}}</td>
-                            <td>{{message.mobileNumber}}</td>
-                            <td>{{message.chosenOption.value || ""}}</td>
-                            <td>{{message.smsResponses[0].content || ""}}</td>
-                            <td>{{message.smsResponses[0].acknowledgedTimestamp | timestampFilter}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                			<th colspan="6">
+                				<input st-search placeholder="Global Search" class="form-control" type="search"/>
+                			</th>
+                		</tr>
+            		</thead>
+            		<tbody>
+                		<tr ng-repeat="row in tableData">
+                			<td>{{row.firstName}}</td>
+                			<td>{{row.lastName}}</td>
+                			<td>{{row.mobileNumber}}</td>
+                			<td>{{row.chosenOption}}</td>
+                            <td>{{row.lastMessage}}</td>
+                            <td>{{row.lastMessageTime}}</td>
+                		</tr>
+            		</tbody>
+            		<tfoot>
+            			<tr>
+            				<td colspan="5" class="text-center">
+            					<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+            				</td>
+            			</tr>
+            		</tfoot>
+        	    </table>
             </div>
         </div>
     </div>

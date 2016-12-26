@@ -1,4 +1,4 @@
-var myPollApp = angular.module('myPollApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'chart.js']);
+var myPollApp = angular.module('myPollApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'chart.js', 'smart-table']);
 
 myPollApp.run(function($rootScope, $location) {
     //remove at production

@@ -1,11 +1,16 @@
-myPollApp.controller('PollIndividualViewController', function($scope, $uibModal,$filter, PollService, poll) {
+myPollApp.controller('PollIndividualViewController', function($scope, $uibModal, $filter, PollService, poll) {
+
+    var repliedMessagesFilter = $filter('repliedMessagesFilter');
+    var timestampFilter = $filter('timestampFilter');
 
     $scope.poll = poll;
-    var repliedMessagesFilter = $filter('repliedMessagesFilter');
     $scope.poll.stats = {};
     $scope.poll.stats.repliedMessages = repliedMessagesFilter($scope.poll.messages).length || 0;
 
     $scope.result = getSimpleResultArray(poll);
+    $scope.itemsByPage = 10;
+    $scope.tableData = getTableRowArray(poll.messages);
+
     $scope.chartLabels = Object.keys($scope.result.validOptions);
     $scope.chartData = Object.values($scope.result.validOptions);
 
@@ -14,10 +19,10 @@ myPollApp.controller('PollIndividualViewController', function($scope, $uibModal,
                       invalidOption: 0,
                       validOptions: []};
         var validOptionsDic = {};
-        var len = poll.messages.length;
-        for (var i=0;i<len;i++){
+        for (i = 0, len = poll.messages.length; i < len; i++){
             var responded = poll.messages[i].smsResponses.length > 0? true : false;
             var hasChosenOption = poll.messages[i].chosenOption ? true: false;
+
             if (!responded){
                 resultObject["notResponded"]++;
             }else if (!hasChosenOption){
@@ -28,6 +33,23 @@ myPollApp.controller('PollIndividualViewController', function($scope, $uibModal,
             }
         }
         return resultObject;
+    }
+
+    function getTableRowArray(messages){
+        var rowArray = [];
+        for (i = 0, len= messages.length; i < len; i++){
+            var msg = messages[i];
+            var newItem = {
+                           firstName: msg.firstName,
+                           lastName: msg.lastName,
+                           mobileNumber: msg.mobileNumber,
+                           chosenOption: msg.chosenOption.value || "",
+                           lastMessage: msg.smsResponses[0].content || "",
+                           lastMessageTime: timestampFilter(msg.smsResponses[0].acknowledgedTimestamp)
+            };
+            rowArray.push(newItem);
+        }
+        return rowArray;
     }
 
     $scope.updateResponses = function(poll){

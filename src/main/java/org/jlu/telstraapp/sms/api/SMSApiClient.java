@@ -26,7 +26,6 @@ public class SMSApiClient {
 	private static final String SMS_RESPONSE_URL = "https://api.telstra.com/v1/sms/messages/*/response";
 	
 	public SMSApiClient(){
-		
 	}
 	
 	public void sendMessage(String authenticationKey,SMSMessage msg) throws Exception{
@@ -57,14 +56,14 @@ public class SMSApiClient {
     		String getURL = SMS_STATUS_URL.replace("*",msg.getMessageId());
         	HttpGet get = new HttpGet(getURL);
         	get.setHeader("Authorization", authenticationKey);
-        	HttpResponse response = httpClient.execute(get);
+        	HttpResponse httpResponse = httpClient.execute(get);
         	
-        	String output = EntityUtils.toString(response.getEntity());
-        	JsonNode mainNode = objectMapper.readTree(output);
+        	String httpResponseString = EntityUtils.toString(httpResponse.getEntity());
+        	UpdateMessageStatusResponse response = objectMapper.readValue(httpResponseString,UpdateMessageStatusResponse.class);
         	
-        	msg.setSentTimestamp(mainNode.get("sentTimestamp").asText());
-        	msg.setReceivedTimestamp(mainNode.get("receivedTimestamp").asText());
-        	msg.setStatus(mainNode.get("status").asText());
+        	msg.setSentTimestamp(response.getSentTimestamp());
+        	msg.setReceivedTimestamp(response.getReceivedTimestamp());
+        	msg.setStatus(response.getStatus());
     	}
     }
     
