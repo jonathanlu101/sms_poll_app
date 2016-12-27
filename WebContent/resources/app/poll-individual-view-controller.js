@@ -10,6 +10,7 @@ myPollApp.controller('PollIndividualViewController', function($scope, $uibModal,
     $scope.result = getSimpleResultArray(poll);
     $scope.itemsByPage = 10;
     $scope.tableData = getTableRowArray(poll.messages);
+    $scope.tableHeader = ["First Name","Last Name","Mobile","Option","Last Reply","Received"];
 
     $scope.chartLabels = Object.keys($scope.result.validOptions);
     $scope.chartData = Object.values($scope.result.validOptions);

@@ -66,6 +66,7 @@
             <hr/>
             <div id="messages">
                 <h3>Messages</h3>
+                <button class="btn btn-info" ng-csv="tableData" csv-header="tableHeader" filename="{{poll.name}}_export.csv">Export CSV</button>
                 <table st-table="tableData" class="table table-striped">
             		<thead>
                 		<tr>
