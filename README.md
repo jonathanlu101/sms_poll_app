@@ -1,12 +1,12 @@
 # SMS Poll App
 
-SMS Poll App uses Telstra sms api to send polls/surveys to surveyees. After Surveyees sends their responses, the application will then categorise those responses to preset options and store the results for the surveyor to use.
+SMS Poll App uses Telstra SMS Api to send polls/surveys to mobile numbers. After Surveyees replies with their responses, the application will categorise the responses to preset options and store the results.
 
 ## Frameworks: 
 
 __Styling:__ Flat-UI(Bootstrap Skin), Bootstrap
 
-__Front End:__ Angularjs(1.5.8), Angular Chart, UI Bootstrap
+__Front End:__ Angularjs(1.5.8), Angular Chart, UI Bootstrap, Smart Table, ng-csv, angular-csv-import
 
 __Back End:__ Spring MVC, Spring Security, Hibernate
 
@@ -20,10 +20,10 @@ __Back End:__ Spring MVC, Spring Security, Hibernate
 
 ## Screenshots:
 ##### Poll Results
-![Poll Results Screenshot](http://imgur.com/VVDIG0U "Poll Results Screenshot")
+![Poll Results Screenshot](http://imgur.com/VVDIG0U.png "Poll Results Screenshot")
 ##### New Poll
-![New Poll Screenshot](http://imgur.com/kkJRHX1 "New Poll Screenshot")
+![New Poll Screenshot](http://imgur.com/kkJRHX1.png "New Poll Screenshot")
 ##### Edit ContactList
-![Edit ContactList Screenshot](http://imgur.com/t0EKSAE "Edit ContactList Screenshot")
+![Edit ContactList Screenshot](http://imgur.com/t0EKSAE.png "Edit ContactList Screenshot")
 ## Full Screenshots Album 
 <http://imgur.com/a/0LPKd>
