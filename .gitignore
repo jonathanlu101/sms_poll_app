@@ -3,5 +3,6 @@
 .classpath
 .settings/*
 target/*
+screenshots/*
 
 WebContent/WEB-INF/config.properties

@@ -24,6 +24,7 @@
     <script src="resources\app\lib\chart\angular-chart.js"></script>
     <script src="resources\app\lib\smart-table\smart-table.js"></script>
     <script src="resources\app\lib\ng-csv\ng-csv.js"></script>
+    <script src="resources\app\lib\angular-csv-import\angular-csv-import.min.js"></script>
     <!-- App JS -->
     <script src="resources\app\app-main.js"></script>
     <script src="resources\app\service\contact-list-service.js"></script>

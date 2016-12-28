@@ -14,7 +14,10 @@ __Back End:__ Spring MVC, Spring Security, Hibernate
 
 * Login (Stores different Telstra Api keys, no registration page)
 * ContactLists (To store a list of names and mobile no.)
-* Send Poll (Send poll to one or more contactlist)
-* Poll Results (Result table & Graphs)
+* Send Poll (Send poll to one or more contactlists)
+* Poll Results Table & Graphs
+* Poll Results Sort,Search,Export
 
-## Example/Screenshots:
+## Screenshots:
+##### Poll Results
+![Poll Results Screenshot](http://i.imgur.com/8xIsOZD.png "Poll Results Screenshot")
