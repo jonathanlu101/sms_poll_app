@@ -20,4 +20,10 @@ __Back End:__ Spring MVC, Spring Security, Hibernate
 
 ## Screenshots:
 ##### Poll Results
-![Poll Results Screenshot](http://i.imgur.com/8xIsOZD.png "Poll Results Screenshot")
+![Poll Results Screenshot](http://imgur.com/VVDIG0U "Poll Results Screenshot")
+##### New Poll
+![New Poll Screenshot](http://imgur.com/kkJRHX1 "New Poll Screenshot")
+##### Edit ContactList
+![Edit ContactList Screenshot](http://imgur.com/t0EKSAE "Edit ContactList Screenshot")
+## Full Screenshots Album 
+<http://imgur.com/a/0LPKd>
