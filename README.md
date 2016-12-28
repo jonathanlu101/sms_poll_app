@@ -26,4 +26,4 @@ __Back End:__ Spring MVC, Spring Security, Hibernate
 ##### Edit ContactList
 ![Edit ContactList Screenshot](http://imgur.com/t0EKSAE.png "Edit ContactList Screenshot")
 ## Full Screenshots Album 
-<http://imgur.com/a/0LPKd>
+<a href="http://imgur.com/a/0LPKd" target="_blank">http://imgur.com/a/0LPKd</a>
